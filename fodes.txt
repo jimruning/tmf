@@ -1,0 +1,251 @@
+Zone #	Zone Name	Section #	Section Name	Artifact #	Artifact name
+01	Trial Management	01.01	Trial Oversight	01.01.01	Trial Master File Plan
+01	Trial Management	01.01	Trial Oversight	01.01.02	Trial Management Plan
+01	Trial Management	01.01	Trial Oversight	01.01.03	Quality Plan 
+01	Trial Management	01.01	Trial Oversight	01.01.04	List of SOPs Current During Trial
+01	Trial Management	01.01	Trial Oversight	01.01.05	Operational Procedure Manual
+01	Trial Management	01.01	Trial Oversight	01.01.06	Recruitment Plan
+01	Trial Management	01.01	Trial Oversight	01.01.07	Communication Plan
+01	Trial Management	01.01	Trial Oversight	01.01.08	Monitoring Plan
+01	Trial Management	01.01	Trial Oversight	01.01.09	Medical Monitoring Plan
+01	Trial Management	01.01	Trial Oversight	01.01.10	Publication Policy
+01	Trial Management	01.01	Trial Oversight	01.01.11	Debarment Statement
+01	Trial Management	01.01	Trial Oversight	01.01.12	Trial Status Report
+01	Trial Management	01.01	Trial Oversight	01.01.13	Investigator Newsletter
+01	Trial Management	01.01	Trial Oversight	01.01.14	Audit Certificate
+01	Trial Management	01.01	Trial Oversight	01.01.15	Filenote Master List
+01	Trial Management	01.01	Trial Oversight	01.01.16	Risk Management Plan
+01	Trial Management	01.01	Trial Oversight	01.01.17	Vendor Management Plan
+01	Trial Management	01.01	Trial Oversight	01.01.18	Roles and Responsibility Matrix
+01	Trial Management	01.01	Trial Oversight	01.01.19	Transfer of Regulatory Obligations 
+01	Trial Management	01.01	Trial Oversight	01.01.20	Operational Oversight
+01	Trial Management	01.02	Trial Team	01.02.01	Trial Team Details
+01	Trial Management	01.02	Trial Team	01.02.02	Trial Team Curriculum Vitae
+01	Trial Management	01.03	Trial Committee	01.03.01	Committee Process
+01	Trial Management	01.03	Trial Committee	01.03.02	Committee Member List
+01	Trial Management	01.03	Trial Committee	01.03.03	Committee Output
+01	Trial Management	01.03	Trial Committee	01.03.04	Committee Member Curriculum Vitae
+01	Trial Management	01.03	Trial Committee	01.03.05	Committee Member Financial Disclosure Form
+01	Trial Management	01.03	Trial Committee	01.03.06	Committee Member Contract
+01	Trial Management	01.03	Trial Committee	01.03.07	Committee Member Confidentiality Disclosure Agreement
+01	Trial Management	01.04	Meetings	01.04.01	Kick-off Meeting Material
+01	Trial Management	01.04	Meetings	01.04.02	Trial Team Training Material
+01	Trial Management	01.04	Meetings	01.04.03	Investigators Meeting Material
+01	Trial Management	01.04	Meetings	01.04.04	Trial Team Evidence of Training
+01	Trial Management	01.05	General	01.05.01	Relevant Communications
+01	Trial Management	01.05	General	01.05.02	Tracking Information
+01	Trial Management	01.05	General	01.05.03	Other Meeting Material
+01	Trial Management	01.05	General	01.05.04	Filenote
+02	Central Trial Documents	02.01	Product and Trial Documentation	02.01.01	Investigator's Brochure
+02	Central Trial Documents	02.01	Product and Trial Documentation	02.01.02	Protocol 
+02	Central Trial Documents	02.01	Product and Trial Documentation	02.01.03	Protocol Synopsis
+02	Central Trial Documents	02.01	Product and Trial Documentation	02.01.04	Protocol Amendment
+02	Central Trial Documents	02.01	Product and Trial Documentation	02.01.05	Financial Disclosure Summary
+02	Central Trial Documents	02.01	Product and Trial Documentation	02.01.06	Insurance
+02	Central Trial Documents	02.01	Product and Trial Documentation	02.01.07	Sample Case Report Form 
+02	Central Trial Documents	02.01	Product and Trial Documentation	02.01.10	Report of Prior Investigations
+02	Central Trial Documents	02.01	Product and Trial Documentation	02.01.11	Marketed Product Material
+02	Central Trial Documents	02.02	Subject Documentation	02.02.01	Subject Diary
+02	Central Trial Documents	02.02	Subject Documentation	02.02.02	Subject Questionnaire
+02	Central Trial Documents	02.02	Subject Documentation	02.02.03	Informed Consent Form
+02	Central Trial Documents	02.02	Subject Documentation	02.02.04	Subject Information Sheet
+02	Central Trial Documents	02.02	Subject Documentation	02.02.05	Subject Participation Card
+02	Central Trial Documents	02.02	Subject Documentation	02.02.06	Advertisements for Subject Recruitment
+02	Central Trial Documents	02.02	Subject Documentation	02.02.07	Other Information Given to Subjects
+02	Central Trial Documents	02.03	Reports	02.03.01	Clinical Study Report
+02	Central Trial Documents	02.03	Reports	02.03.02	Bioanalytical Report 
+02	Central Trial Documents	02.04	General	02.04.01	Relevant Communications
+02	Central Trial Documents	02.04	General	02.04.02	Tracking Information
+02	Central Trial Documents	02.04	General	02.04.03	Meeting Material
+02	Central Trial Documents	02.04	General	02.04.04	Filenote
+03	Regulatory	03.01	Trial Approval	03.01.01	Regulatory Submission
+03	Regulatory	03.01	Trial Approval	03.01.02	Regulatory Authority Decision
+03	Regulatory	03.01	Trial Approval	03.01.03	Notification of Regulatory Identification Number
+03	Regulatory	03.01	Trial Approval	03.01.04	Public Registration 
+03	Regulatory	03.02	Investigational Medicinal Product	03.02.01	Import or Export License Application
+03	Regulatory	03.02	Investigational Medicinal Product	03.02.02	Import or Export Documentation
+03	Regulatory	03.03	Trial Status Reporting	03.03.01	Notification of Safety or Trial Information
+03	Regulatory	03.03	Trial Status Reporting	03.03.02	Regulatory Progress Report
+03	Regulatory	03.03	Trial Status Reporting	03.03.03	Regulatory Notification of Trial Termination
+03	Regulatory	03.04	General	03.04.01	Relevant Communications
+03	Regulatory	03.04	General	03.04.02	Tracking Information
+03	Regulatory	03.04	General	03.04.03	Meeting Material
+03	Regulatory	03.04	General	03.04.04	Filenote
+04	IRB or IEC and other Approvals	04.01	IRB or IEC Trial Approval	04.01.01	IRB or IEC Submission
+04	IRB or IEC and other Approvals	04.01	IRB or IEC Trial Approval	04.01.02	IRB or IEC Decision
+04	IRB or IEC and other Approvals	04.01	IRB or IEC Trial Approval	04.01.03	IRB or IEC Composition
+04	IRB or IEC and other Approvals	04.01	IRB or IEC Trial Approval	04.01.04	IRB or IEC Documentation of Non-Voting Status
+04	IRB or IEC and other Approvals	04.01	IRB or IEC Trial Approval	04.01.05	IRB or IEC Compliance Documentation
+04	IRB or IEC and other Approvals	04.02	Other Committees	04.02.01	Other Submissions
+04	IRB or IEC and other Approvals	04.02	Other Committees	04.02.02	Other Approvals
+04	IRB or IEC and other Approvals	04.03	Trial Status Reporting	04.03.01	Notification to IRB or IEC of Safety Information
+04	IRB or IEC and other Approvals	04.03	Trial Status Reporting	04.03.02	IRB or IEC Progress Report
+04	IRB or IEC and other Approvals	04.03	Trial Status Reporting	04.03.03	IRB or IEC Notification of Trial Termination
+04	IRB or IEC and other Approvals	04.04	General	04.04.01	Relevant Communications
+04	IRB or IEC and other Approvals	04.04	General	04.04.02	Tracking Information
+04	IRB or IEC and other Approvals	04.04	General	04.04.03	Meeting Material
+04	IRB or IEC and other Approvals	04.04	General	04.04.04	Filenote
+05	Site Management	05.01	Site Selection	05.01.01	Site Contact Details
+05	Site Management	05.01	Site Selection	05.01.02	Confidentiality Agreement
+05	Site Management	05.01	Site Selection	05.01.03	Feasibility Documentation
+05	Site Management	05.01	Site Selection	05.01.04	Pre Trial Monitoring Report
+05	Site Management	05.01	Site Selection	05.01.05	Sites Evaluated but not Selected
+05	Site Management	05.02	Site Set-up 	05.02.01	Acceptance of Investigator Brochure
+05	Site Management	05.02	Site Set-up 	05.02.02	Protocol Signature Page
+05	Site Management	05.02	Site Set-up 	05.02.03	Protocol Amendment Signature Page
+05	Site Management	05.02	Site Set-up 	05.02.04	Principal Investigator Curriculum Vitae
+05	Site Management	05.02	Site Set-up 	05.02.05	Sub-Investigator Curriculum Vitae
+05	Site Management	05.02	Site Set-up 	05.02.06	Other Curriculum Vitae
+05	Site Management	05.02	Site Set-up 	05.02.07	Site Staff Qualification Supporting Information
+05	Site Management	05.02	Site Set-up 	05.02.08	Form FDA 1572
+05	Site Management	05.02	Site Set-up 	05.02.09	Investigator Regulatory Agreement
+05	Site Management	05.02	Site Set-up 	05.02.10	Financial Disclosure Form
+05	Site Management	05.02	Site Set-up 	05.02.11	Data Privacy Agreement
+05	Site Management	05.02	Site Set-up 	05.02.12	Clinical Trial Agreement
+05	Site Management	05.02	Site Set-up 	05.02.13	Indemnity
+05	Site Management	05.02	Site Set-up 	05.02.14	Other Financial Agreement
+05	Site Management	05.02	Site Set-up 	05.02.17	IP Site Release Documentation
+05	Site Management	05.02	Site Set-up 	05.02.18	Site Signature Sheet
+05	Site Management	05.02	Site Set-up 	05.02.19	Investigators Agreement (Device)
+05	Site Management	05.02	Site Set-up 	05.02.20	Coordinating Investigator Documentation
+05	Site Management	05.03	Site Initiation	05.03.01	Trial Initiation Monitoring Report
+05	Site Management	05.03	Site Initiation	05.03.02	Site Training Material
+05	Site Management	05.03	Site Initiation	05.03.03	Site Evidence of Training
+05	Site Management	05.04	Site Management	05.04.01	Subject Log
+05	Site Management	05.04	Site Management	05.04.02	Source Data Verification 
+05	Site Management	05.04	Site Management	05.04.03	Monitoring Visit Report
+05	Site Management	05.04	Site Management	05.04.04	Visit Log
+05	Site Management	05.04	Site Management	05.04.05	Additional Monitoring Activity
+05	Site Management	05.04	Site Management	05.04.06	Protocol Deviations 
+05	Site Management	05.04	Site Management	05.04.07	Financial Documentation
+05	Site Management	05.04	Site Management	05.04.08	Final Trial Close Out Monitoring Report
+05	Site Management	05.04	Site Management	05.04.09	Notification to Investigators of Safety Information
+05	Site Management	05.04	Site Management	05.04.10	Subject Identification Log
+05	Site Management	05.04	Site Management	05.04.11	Source Data 
+05	Site Management	05.04	Site Management	05.04.12	Monitoring Visit Follow-up Documentation
+05	Site Management	05.04	Site Management	05.04.13	Subject Eligibility Verification Forms and Worksheets
+05	Site Management	05.05	General	05.05.01	Relevant Communications
+05	Site Management	05.05	General	05.05.02	Tracking Information
+05	Site Management	05.05	General	05.05.03	Meeting Material
+05	Site Management	05.05	General	05.05.04	Filenote
+06	IP and Trial Supplies	06.01	IP Documentation	06.01.01	IP Supply Plan
+06	IP and Trial Supplies	06.01	IP Documentation	06.01.02	IP Instructions for Handling
+06	IP and Trial Supplies	06.01	IP Documentation	06.01.03	IP Sample Label
+06	IP and Trial Supplies	06.01	IP Documentation	06.01.04	IP Shipment Documentation
+06	IP and Trial Supplies	06.01	IP Documentation	06.01.05	IP Accountability Documentation
+06	IP and Trial Supplies	06.01	IP Documentation	06.01.06	IP Transfer Documentation
+06	IP and Trial Supplies	06.01	IP Documentation	06.01.07	IP Re-labeling Documentation
+06	IP and Trial Supplies	06.01	IP Documentation	06.01.08	IP Recall Documentation
+06	IP and Trial Supplies	06.01	IP Documentation	06.01.09	IP Quality Complaint Form
+06	IP and Trial Supplies	06.01	IP Documentation	06.01.10	IP Return Documentation 
+06	IP and Trial Supplies	06.01	IP Documentation	06.01.11	IP Certificate of Destruction
+06	IP and Trial Supplies	06.01	IP Documentation	06.01.12	IP Retest and Expiry Documentation
+06	IP and Trial Supplies	06.02	IP Release Process Documentation	06.02.01	QP (Qualified Person) Certification
+06	IP and Trial Supplies	06.02	IP Release Process Documentation	06.02.02	IP Regulatory Release Documentation
+06	IP and Trial Supplies	06.02	IP Release Process Documentation	06.02.03	IP Verification Statements
+06	IP and Trial Supplies	06.02	IP Release Process Documentation	06.02.04	Certificate of Analysis 
+06	IP and Trial Supplies	06.03	IP Allocation Documentation	06.03.01	IP Treatment Allocation Documentation
+06	IP and Trial Supplies	06.03	IP Allocation Documentation	06.03.02	IP Unblinding Plan
+06	IP and Trial Supplies	06.03	IP Allocation Documentation	06.03.03	IP Treatment Decoding Documentation 
+06	IP and Trial Supplies	06.04	Storage	06.04.01	IP Storage Condition Documentation
+06	IP and Trial Supplies	06.04	Storage	06.04.02	IP Storage Condition Excursion Documentation
+06	IP and Trial Supplies	06.04	Storage	06.04.03	Maintenance Logs 
+06	IP and Trial Supplies	06.05	Non-IP Documentation	06.05.01	Non-IP Supply Plan
+06	IP and Trial Supplies	06.05	Non-IP Documentation	06.05.02	Non-IP Shipment Documentation
+06	IP and Trial Supplies	06.05	Non-IP Documentation	06.05.03	Non-IP Return Documentation 
+06	IP and Trial Supplies	06.05	Non-IP Documentation	06.05.04	Non-IP Storage Documentation
+06	IP and Trial Supplies	06.06	Interactive Response Technology	06.06.01	IRT User Requirement Specification
+06	IP and Trial Supplies	06.06	Interactive Response Technology	06.06.02	IRT Validation Certification
+06	IP and Trial Supplies	06.06	Interactive Response Technology	06.06.03	IRT User Acceptance Testing (UAT) Certification
+06	IP and Trial Supplies	06.06	Interactive Response Technology	06.06.04	IRT User Manual
+06	IP and Trial Supplies	06.06	Interactive Response Technology	06.06.05	IRT User Account Management
+06	IP and Trial Supplies	06.07	General	06.07.01	Relevant Communications
+06	IP and Trial Supplies	06.07	General	06.07.02	Tracking Information
+06	IP and Trial Supplies	06.07	General	06.07.03	Meeting Material
+06	IP and Trial Supplies	06.07	General	06.07.04	Filenote
+07	Safety Reporting	07.01	Safety Documentation	07.01.01	Safety Management Plan
+07	Safety Reporting	07.01	Safety Documentation	07.01.02	Pharmacovigilance Database Line Listing
+07	Safety Reporting	07.02	Trial Status Reporting	07.02.01	Expedited Safety Report
+07	Safety Reporting	07.02	Trial Status Reporting	07.02.02	SAE Report
+07	Safety Reporting	07.02	Trial Status Reporting	07.02.03	Pregnancy Report
+07	Safety Reporting	07.02	Trial Status Reporting	07.02.04	Special Events of Interest
+07	Safety Reporting	07.03	General	07.03.01	Relevant Communications
+07	Safety Reporting	07.03	General	07.03.02	Tracking Information
+07	Safety Reporting	07.03	General	07.03.03	Meeting Material
+07	Safety Reporting	07.03	General	07.03.04	Filenote
+08	Central and Local Testing	08.01	Facility Documentation	08.01.01	Certification or Accreditation
+08	Central and Local Testing	08.01	Facility Documentation	08.01.02	Laboratory Validation Documentation 
+08	Central and Local Testing	08.01	Facility Documentation	08.01.03	Laboratory Results Documentation 
+08	Central and Local Testing	08.01	Facility Documentation	08.01.04	Normal Ranges
+08	Central and Local Testing	08.01	Facility Documentation	08.01.05	Manual
+08	Central and Local Testing	08.01	Facility Documentation	08.01.06	Supply Import Documentation
+08	Central and Local Testing	08.01	Facility Documentation	08.01.07	Head of Facility Curriculum Vitae
+08	Central and Local Testing	08.01	Facility Documentation	08.01.08	Standardization Methods  
+08	Central and Local Testing	08.02	Sample Documentation	08.02.01	Specimen Label
+08	Central and Local Testing	08.02	Sample Documentation	08.02.02	Shipment Records
+08	Central and Local Testing	08.02	Sample Documentation	08.02.03	Sample Storage Condition Log
+08	Central and Local Testing	08.02	Sample Documentation	08.02.04	Sample Import or Export Documentation
+08	Central and Local Testing	08.02	Sample Documentation	08.02.05	Record of Retained Samples 
+08	Central and Local Testing	08.03	General	08.03.01	Relevant Communications
+08	Central and Local Testing	08.03	General	08.03.02	Tracking Information
+08	Central and Local Testing	08.03	General	08.03.03	Meeting Material
+08	Central and Local Testing	08.03	General	08.03.04	Filenote
+09	Third parties 	09.01	Third Party Oversight	09.01.01	Qualification and Compliance
+09	Third parties 	09.01	Third Party Oversight	09.01.02	Third Party Curriculum Vitae
+09	Third parties 	09.01	Third Party Oversight	09.01.03	Ongoing Third Party Oversight
+09	Third parties 	09.02	Third Party Set-up	09.02.01	Confidentiality Agreement
+09	Third parties 	09.02	Third Party Set-up	09.02.02	Vendor Selection
+09	Third parties 	09.02	Third Party Set-up	09.02.03	Contractual Agreement
+09	Third parties 	09.03	General	09.03.01	Relevant Communications
+09	Third parties 	09.03	General	09.03.02	Tracking Information
+09	Third parties 	09.03	General	09.03.03	Meeting Material
+09	Third parties 	09.03	General	09.03.04	Filenote
+10	Data Management	10.01	Data Management Oversight	10.01.01	Data Management Plan 
+10	Data Management	10.02	Data Capture	10.02.01	CRF Completion Requirements
+10	Data Management	10.02	Data Capture	10.02.02	Annotated CRF 
+10	Data Management	10.02	Data Capture	10.02.04	Documentation of Corrections to Entered Data 
+10	Data Management	10.02	Data Capture	10.02.05	Final Subject Data
+10	Data Management	10.03	Database	10.03.01	Database  Requirements
+10	Data Management	10.03	Database	10.03.02	Edit Check Plan
+10	Data Management	10.03	Database	10.03.03	Edit Check Programming 
+10	Data Management	10.03	Database	10.03.04	Edit Check Testing 
+10	Data Management	10.03	Database	10.03.05	Approval for Database Activation 
+10	Data Management	10.03	Database	10.03.06	External Data Transfer Specifications 
+10	Data Management	10.03	Database	10.03.07	Data Entry Guidelines (Paper)
+10	Data Management	10.03	Database	10.03.08	SAE Reconciliation 
+10	Data Management	10.03	Database	10.03.09	Dictionary Coding 
+10	Data Management	10.03	Database	10.03.10	Data Review Documentation
+10	Data Management	10.03	Database	10.03.11	Database Lock and Unlock Approval 
+10	Data Management	10.03	Database	10.03.12	Database Change Control 
+10	Data Management	10.04	EDC Management	10.04.01	System Account Management
+10	Data Management	10.04	EDC Management	10.04.02	Technical Design Document
+10	Data Management	10.04	EDC Management	10.04.03	Validation Documentation
+10	Data Management	10.05	General	10.05.01	Relevant Communications
+10	Data Management	10.05	General	10.05.02	Tracking Information
+10	Data Management	10.05	General	10.05.03	Meeting Material
+10	Data Management	10.05	General	10.05.04	Filenote
+11	Statistics	11.01	Statistics Oversight	11.01.01	Statistical Analysis Plan 
+11	Statistics	11.01	Statistics Oversight	11.01.02	Sample Size Calculation
+11	Statistics	11.02	Randomization	11.02.01	Randomization Plan 
+11	Statistics	11.02	Randomization	11.02.02	Randomization Procedure 
+11	Statistics	11.02	Randomization	11.02.03	Master Randomization List 
+11	Statistics	11.02	Randomization	11.02.04	Randomization Programming 
+11	Statistics	11.02	Randomization	11.02.05	Randomization Sign Off
+11	Statistics	11.02	Randomization	11.02.06	End of Trial or Interim Unblinding
+11	Statistics	11.03	Analysis	11.03.01	Data Definitions for Analysis Datasets
+11	Statistics	11.03	Analysis	11.03.02	Analysis QC Documentation
+11	Statistics	11.03	Analysis	11.03.03	Interim Analysis Raw Datasets 
+11	Statistics	11.03	Analysis	11.03.04	Interim Analysis Programs
+11	Statistics	11.03	Analysis	11.03.05	Interim Analysis Datasets 
+11	Statistics	11.03	Analysis	11.03.06	Interim Analysis Output
+11	Statistics	11.03	Analysis	11.03.07	Final Analysis Raw Datasets 
+11	Statistics	11.03	Analysis	11.03.08	Final Analysis Programs
+11	Statistics	11.03	Analysis	11.03.09	Final Analysis Datasets
+11	Statistics	11.03	Analysis	11.03.10	Final Analysis Output
+11	Statistics	11.03	Analysis	11.03.11	Subject Evaluability Criteria and Subject Classification
+11	Statistics	11.04	Report	11.04.01	Interim Statistical Report(s)
+11	Statistics	11.04	Report	11.04.02	Statistical Report
+11	Statistics	11.05	General	11.05.01	Relevant Communications
+11	Statistics	11.05	General	11.05.02	Tracking Information
+11	Statistics	11.05	General	11.05.03	Meeting Material
+11	Statistics	11.05	General	11.05.04	Filenote
