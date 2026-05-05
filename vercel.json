@@ -1,18 +1,9 @@
 {
+  "version": 2,
   "buildCommand": "cd api && npm install && cd ../frontend && npm install && npm run build",
   "outputDirectory": "frontend/build",
-  "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/api/[[...index]]"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
-  ],
-  "env": {
-    "JWT_SECRET": "tmf-production-secret-key-change-this",
-    "NODE_ENV": "production"
-  }
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/api/index.js" },
+    { "src": "/(.*)", "dest": "/frontend/build/index.html" }
+  ]
 }
