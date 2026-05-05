@@ -41,7 +41,7 @@ const upload = multer({
 });
 
 // Load roles config
-const { requirePermission, canUploadToZone, getZoneKey } = require('../backend/config/roles');
+const { requirePermission, canUploadToZone, getZoneKey } = require('./config/roles');
 
 // Initialize database with default admin and test users
 const seedDatabase = async () => {
