@@ -552,9 +552,13 @@ app.get('/api/search', authMiddleware, async (req, res) => {
 });
 
 // Health check
+const initRoute = require('./routes/init');
+
 app.get('/api/health', (req, res) => {
   res.json({ success: true, message: 'TMF API is running', timestamp: new Date().toISOString() });
 });
+
+app.post('/api/init', initRoute);
 
 // Static files for uploads
 app.use('/uploads', express.static('/tmp/uploads'));
