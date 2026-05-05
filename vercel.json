@@ -1,0 +1,24 @@
+{
+  "buildCommand": "cd frontend && npm install && npm run build && mkdir -p /tmp/data && cp backend/tmf.db /tmp/data/tmf.db 2>/dev/null || true",
+  "outputDirectory": "frontend/build",
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/[[...index]].js"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+  "env": {
+    "JWT_SECRET": "tmf-production-secret-key-change-this",
+    "NODE_ENV": "production"
+  },
+  "functions": {
+    "api/[[...index]].js": {
+      "maxDuration": 30,
+      "memory": 1024
+    }
+  }
+}

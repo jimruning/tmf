@@ -1,0 +1,9 @@
+{
+  "name": "tmf-vercel",
+  "version": "1.0.0",
+  "private": true,
+  "description": "TMF Vercel deployment wrapper",
+  "scripts": {
+    "build": "cd frontend && npm install && npm run build"
+  }
+}
