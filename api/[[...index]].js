@@ -43,6 +43,45 @@ const upload = multer({
 // Load roles config
 const { requirePermission, canUploadToZone, getZoneKey } = require('../backend/config/roles');
 
+// Initialize database with default admin and test users
+const seedDatabase = async () => {
+  try {
+    const adminPassword = 'admin123';
+    const hash = bcrypt.hashSync(adminPassword, 10);
+    
+    await sql`
+      INSERT INTO users (username, real_name, email, password_hash, role, account_type, title, organization, is_active)
+      VALUES ('admin', '系统管理员', 'admin@tmf.local', ${hash}, 'admin', 'internal', '系统管理员', 'TMF 项目组', true)
+      ON CONFLICT (username) DO UPDATE SET role = 'admin', password_hash = ${hash}
+    `;
+    
+    const testUsers = [
+      { username: 'pi', role: 'pi', account_type: 'site', real_name: '主要研究者' },
+      { username: 'subi', role: 'sub_i', account_type: 'site', real_name: '辅助研究者' },
+      { username: 'crc', role: 'crc', account_type: 'site', real_name: '临床协调员' },
+      { username: 'cra', role: 'cra', account_type: 'cro', real_name: '临床监查员' },
+      { username: 'dm', role: 'dm', account_type: 'sponsor', real_name: '数据管理员' },
+      { username: 'pm', role: 'pm', account_type: 'sponsor', real_name: '项目经理' },
+      { username: 'qa', role: 'qa', account_type: 'internal', real_name: '质量保证' },
+      { username: 'user', role: 'user', account_type: 'site', real_name: '普通用户' }
+    ];
+    
+    for (const u of testUsers) {
+      const pwd = bcrypt.hashSync('test123', 10);
+      await sql`
+        INSERT INTO users (username, real_name, email, password_hash, role, account_type, title, organization, is_active)
+        VALUES (${u.username}, ${u.real_name}, ${u.username + '@tmf.local'}, ${pwd}, ${u.role}, ${u.account_type}, ${u.real_name}, '测试机构', true)
+        ON CONFLICT (username) DO NOTHING
+      `;
+    }
+    console.log('Database seeded with admin and test users');
+  } catch (error) {
+    console.error('Seeding error:', error.message);
+  }
+};
+
+seedDatabase();
+
 // Auth middleware
 const authMiddleware = async (req, res, next) => {
   try {
@@ -552,13 +591,24 @@ app.get('/api/search', authMiddleware, async (req, res) => {
 });
 
 // Health check
-const initRoute = require('./routes/init');
-
 app.get('/api/health', (req, res) => {
   res.json({ success: true, message: 'TMF API is running', timestamp: new Date().toISOString() });
 });
 
-app.post('/api/init', initRoute);
+app.post('/api/init', async (req, res) => {
+  try {
+    await seedDatabase();
+    const { rows: u } = await sql`SELECT COUNT(*) as count FROM users`;
+    const { rows: f } = await sql`SELECT COUNT(*) as count FROM folders WHERE project_id IS NULL`;
+    res.json({
+      success: true,
+      message: '初始化完成',
+      data: { users: u[0].count, folders: f[0].count, admin: { username: 'admin', password: 'admin123' } }
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, error: { code: 'INIT_FAILED', message: error.message } });
+  }
+});
 
 // Static files for uploads
 app.use('/uploads', express.static('/tmp/uploads'));
