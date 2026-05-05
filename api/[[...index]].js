@@ -242,22 +242,33 @@ initTables();
 // Auth routes
 app.post('/api/auth/login', async (req, res) => {
   try {
+    console.log('Login attempt:', req.body?.username);
+    
     const { username, password } = req.body;
     if (!username || !password) {
       return res.status(400).json({ success: false, error: { code: 'VALIDATION_ERROR', message: '用户名和密码不能为空' } });
     }
+    
     const { rows } = await sql`SELECT * FROM users WHERE username = ${username} AND is_active = true`;
-    if (rows.length === 0 || !bcrypt.compareSync(password, rows[0].password_hash)) {
+    console.log('User found:', rows.length);
+    
+    if (rows.length === 0) {
+      return res.status(401).json({ success: false, error: { code: 'INVALID_CREDENTIALS', message: '用户名或密码错误，或用户不存在。请先访问 /api/init 初始化系统。' } });
+    }
+    
+    if (!bcrypt.compareSync(password, rows[0].password_hash)) {
       return res.status(401).json({ success: false, error: { code: 'INVALID_CREDENTIALS', message: '用户名或密码错误' } });
     }
+    
     const user = rows[0];
     const token = jwt.sign({ id: user.id, username: user.username, role: user.role }, process.env.JWT_SECRET || 'default-secret', { expiresIn: '24h' });
     await sql`UPDATE users SET last_login = CURRENT_TIMESTAMP WHERE id = ${user.id}`;
     await sql`INSERT INTO activity_logs (user_id, action, target_type, target_id, details) VALUES (${user.id}, 'login', 'user', ${user.id}, '用户登录')`;
+    
     res.json({ success: true, data: { token, user: { id: user.id, username: user.username, real_name: user.real_name, email: user.email, role: user.role, account_type: user.account_type, title: user.title, organization: user.organization } } });
   } catch (error) {
-    console.error('Login error:', error);
-    res.status(500).json({ success: false, error: { code: 'INTERNAL_ERROR', message: '登录失败' } });
+    console.error('Login error:', error.message, error.stack);
+    res.status(500).json({ success: false, error: { code: 'INTERNAL_ERROR', message: '登录失败：' + error.message } });
   }
 });
 
@@ -593,6 +604,23 @@ app.get('/api/search', authMiddleware, async (req, res) => {
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ success: true, message: 'TMF API is running', timestamp: new Date().toISOString() });
+});
+
+// Initialize endpoint (GET for easy access)
+app.get('/api/init', async (req, res) => {
+  try {
+    await seedDatabase();
+    const { rows: u } = await sql`SELECT COUNT(*) as count FROM users`;
+    const { rows: f } = await sql`SELECT COUNT(*) as count FROM folders WHERE project_id IS NULL`;
+    res.json({
+      success: true,
+      message: '初始化完成',
+      data: { users: u[0].count, folders: f[0].count, admin: { username: 'admin', password: 'admin123' } }
+    });
+  } catch (error) {
+    console.error('Init error:', error);
+    res.status(500).json({ success: false, error: { code: 'INIT_FAILED', message: error.message } });
+  }
 });
 
 app.post('/api/init', async (req, res) => {
