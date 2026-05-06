@@ -420,6 +420,48 @@ app.post('/api/projects', authMiddleware, async (req, res) => {
   }
 });
 
+// Create project (alternative endpoint for frontend compatibility)
+app.post('/api/projects/init', authMiddleware, async (req, res) => {
+  try {
+    const { name, nameEn, sponsor, protocolNumber, phase, therapeuticArea, principalInvestigator } = req.body;
+    
+    if (!name) {
+      return res.status(400).json({ success: false, error: { code: 'VALIDATION_ERROR', message: '项目名称不能为空' } });
+    }
+    
+    // Create project
+    const projectResult = await query(
+      `INSERT INTO projects (name, name_en, sponsor, protocol_number, phase, therapeutic_area, principal_investigator, created_by)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`,
+      [name, nameEn || null, sponsor || null, protocolNumber || null, phase || null, therapeuticArea || null, principalInvestigator || null, req.user.id]
+    );
+    
+    const project = projectResult.rows[0];
+    
+    // Copy template folders to project
+    const templateFolders = await query('SELECT * FROM folders WHERE project_id IS NULL');
+    
+    for (const folder of templateFolders.rows) {
+      await query(
+        `INSERT INTO folders (project_id, zone, zone_cn, zone_en, section, section_cn, section_en, artifact, artifact_cn, artifact_en, level, path)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`,
+        [project.id, folder.zone, folder.zone_cn, folder.zone_en, folder.section, folder.section_cn, folder.section_en, folder.artifact, folder.artifact_cn, folder.artifact_en, folder.level, folder.path]
+      );
+    }
+    
+    // Log activity
+    await query(
+      'INSERT INTO activity_logs (user_id, action, target_type, target_id, details) VALUES ($1, $2, $3, $4, $5)',
+      [req.user.id, 'create', 'project', project.id, `创建项目: ${name}`]
+    );
+    
+    res.status(201).json({ success: true, data: project, message: `项目创建成功，已复制 ${templateFolders.rows.length} 个文件夹` });
+  } catch (error) {
+    console.error('Create project error:', error);
+    res.status(500).json({ success: false, error: { code: 'INTERNAL_ERROR', message: '创建项目失败' } });
+  }
+});
+
 // Folders routes
 app.get('/api/folders/tree', authMiddleware, async (req, res) => {
   try {
