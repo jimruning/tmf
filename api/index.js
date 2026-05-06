@@ -222,6 +222,30 @@ const seedDatabase = async () => {
       `, [...u, pwd, u[3], u[4], u[5], '测试机构', true]);
     }
     
+    // Import TMF folders from fodes.txt
+    const fs = require('fs');
+    const fodesPath = path.join(__dirname, '..', 'fodes.txt');
+    if (fs.existsSync(fodesPath)) {
+      const content = fs.readFileSync(fodesPath, 'utf-8');
+      const lines = content.split('\n').filter(l => l.trim() && !l.startsWith('#'));
+      
+      for (const line of lines) {
+        const parts = line.split('|').map(s => s?.trim() || '');
+        if (parts.length >= 3) {
+          const [zone, section, artifact, zoneCn, zoneEn, sectionCn, sectionEn, artifactCn, artifactEn] = parts;
+          const level = artifact ? 3 : 1;
+          const pathStr = `${zone}/${section}${artifact ? '/' + artifact : ''}`;
+          
+          await query(`
+            INSERT INTO folders (project_id, zone, zone_cn, zone_en, section, section_cn, section_en, artifact, artifact_cn, artifact_en, level, path)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
+            ON CONFLICT DO NOTHING
+          `, [null, zone, zoneCn || '', zoneEn || '', section, sectionCn || '', sectionEn || '', artifact || '', artifactCn || '', artifactEn || '', level, pathStr]);
+        }
+      }
+      console.log('TMF folders imported');
+    }
+    
     console.log('Database seeded');
   } catch (error) {
     console.error('Seeding error:', error.message);
