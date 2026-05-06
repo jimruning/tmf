@@ -542,16 +542,131 @@ app.get('/api/init', async (req, res) => {
 
 app.post('/api/init', async (req, res) => {
   try {
+    console.log('Starting seed...');
     await seedDatabase();
+    console.log('Seed completed');
+    
     const usersResult = await query('SELECT COUNT(*) as count FROM users');
     const foldersResult = await query('SELECT COUNT(*) as count FROM folders WHERE project_id IS NULL');
+    
+    console.log('Users:', usersResult.rows[0].count);
+    console.log('Folders:', foldersResult.rows[0].count);
+    
     res.json({
       success: true,
       message: '初始化完成',
-      data: { users: usersResult.rows[0].count, folders: foldersResult.rows[0].count, admin: { username: 'admin', password: 'admin123' } }
+      data: { 
+        users: usersResult.rows[0].count, 
+        folders: foldersResult.rows[0].count, 
+        admin: { username: 'admin', password: 'admin123' } 
+      }
     });
   } catch (error) {
+    console.error('Init error:', error);
     res.status(500).json({ success: false, error: { code: 'INIT_FAILED', message: error.message } });
+  }
+});
+
+// Debug endpoint to check folders
+app.get('/api/debug/folders', async (req, res) => {
+  try {
+    const result = await query('SELECT COUNT(*) as count FROM folders WHERE project_id IS NULL');
+    const samples = await query('SELECT * FROM folders WHERE project_id IS NULL LIMIT 5');
+    res.json({ success: true, count: result.rows[0].count, samples: samples.rows });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+// Import TMF folders endpoint
+app.post('/api/import-folders', async (req, res) => {
+  try {
+    const tmfData = [
+      {zone:'1',zoneCn:'试验主文件管理',zoneEn:'TMF Management',section:'1.1',sectionCn:'TMF标准定义',sectionEn:'TMF Standards',artifact:'1.1.1',artifactCn:'TMF参考模型',artifactEn:'TMF Reference Model'}
+    ];
+    
+    const zones = [
+      {num:'1',cn:'试验主文件管理',en:'TMF Management',sections:[
+        {num:'1.1',cn:'TMF标准定义',en:'TMF Standards',artifacts:['TMF参考模型','TMF Reference Model','TMF版本说明']},
+        {num:'1.2',cn:'TMF目录结构',en:'TMF Index Structure',artifacts:['TMF文档目录','TMF索引文件','TMF变更记录']}
+      ]},
+      {num:'2',cn:'试验管理',en:'Trial Management',sections:[
+        {num:'2.1',cn:'试验启动',en:'Trial Initiation',artifacts:['试验方案','Protocol','方案签字页','研究者名单','中心启动信']},
+        {num:'2.2',cn:'试验进行中',en:'Trial Conduct',artifacts:['方案修正案','Amendment','研究者手册更新','试验暂停终止']},
+        {num:'2.3',cn:'试验结束',en:'Trial Closure',artifacts:['关闭中心通知','中心关闭确认','试验完成报告']}
+      ]},
+      {num:'3',cn:'安全性报告',en:'Safety Reports',sections:[
+        {num:'3.1',cn:'严重不良事件',en:'SAE',artifacts:['SAE报告表','SAE豁免申请','SAE汇总表']},
+        {num:'3.2',cn:'安全信息',en:'Safety Information',artifacts:['DSUR','年度安全报告','风险评估报告']}
+      ]},
+      {num:'4',cn:'受试者文件',en:'Subject Files',sections:[
+        {num:'4.1',cn:'知情同意',en:'Informed Consent',artifacts:['知情同意书','ICF更新记录','知情过程记录']},
+        {num:'4.2',cn:'筛选',en:'Screening',artifacts:['筛选记录','筛选失败记录','入组审核']},
+        {num:'4.3',cn:'随机化',en:'Randomization',artifacts:['随机分配表','随机代码','盲态维持']},
+        {num:'4.4',cn:'访视记录',en:'Visit Records',artifacts:['访视日志','方案偏离记录','合并用药记录']},
+        {num:'4.5',cn:'实验室检查',en:'Laboratory',artifacts:['实验室正常值','实验室报告','样本记录']},
+        {num:'4.6',cn:'心电图',en:'ECG',artifacts:['ECG报告','ECG异常判定']},
+        {num:'4.7',cn:'影像学检查',en:'Imaging',artifacts:['影像学报告','影像质量评估']}
+      ]},
+      {num:'5',cn:'IMP/研究器械管理',en:'IMP/Device Management',sections:[
+        {num:'5.1',cn:'供应记录',en:'Supply Records',artifacts:['IMP供应记录','温度记录','库存清单']},
+        {num:'5.2',cn:'发放回收',en:'Dispensation/Retrieval',artifacts:['IMP发放记录','IMP回收记录','用药依从性']},
+        {num:'5.3',cn:'标签包装',en:'Labeling/Packaging',artifacts:['标签样本','包装规格','随机标签']}
+      ]},
+      {num:'6',cn:'监查',en:'Monitoring',sections:[
+        {num:'6.1',cn:'监查访视',en:'Monitoring Visits',artifacts:['监查报告','访视确认函','跟进信']},
+        {num:'6.2',cn:'源数据核查',en:'SDV',artifacts:['SDV记录','数据质疑表','数据澄清']},
+        {num:'6.3',cn:'质量控制',en:'Quality Control',artifacts:['质量检查记录','CAPA记录','纠正预防措施']}
+      ]},
+      {num:'7',cn:'监管提交',en:'Regulatory Submissions',sections:[
+        {num:'7.1',cn:'伦理委员会',en:'IRB/IEC',artifacts:['伦理审批函','伦理年度更新','方案修正审批']},
+        {num:'7.2',cn:'监管机构',en:'Regulatory Authority',artifacts:['IND/NDA申请','CTA批准函','监管机构通信']},
+        {num:'7.3',cn:'研究者变更',en:'Investigator Changes',artifacts:['研究者变更申请','分中心新增','研究者资质文件']}
+      ]},
+      {num:'8',cn:'研究者文件夹',en:'Investigator Site File',sections:[
+        {num:'8.1',cn:'研究者资质',en:'Investigator Qualifications',artifacts:['研究者简历','GCP证书','培训记录']},
+        {num:'8.2',cn:'授权表',en:'Delegation Log',artifacts:['授权表','角色职责','签字样式']},
+        {num:'8.3',cn:'医学评估',en:'Medical Evaluation',artifacts:['医学评估记录','入组审核','安全性评估']}
+      ]},
+      {num:'9',cn:'数据管理',en:'Data Management',sections:[
+        {num:'9.1',cn:'数据录入',en:'Data Entry',artifacts:['CRF数据','数据录入说明','数据录入记录']},
+        {num:'9.2',cn:'数据库',en:'Database',artifacts:['数据库锁库','数据导出','数据编码']},
+        {num:'9.3',cn:'统计分析',en:'Statistical',artifacts:['统计分析计划','统计编程','统计报告']}
+      ]},
+      {num:'10',cn:'统计分析',en:'Statistical Analysis',sections:[
+        {num:'10.1',cn:'统计分析计划',en:'SAP',artifacts:['SAP文档','统计分析表格','统计方法说明']},
+        {num:'10.2',cn:'期中分析',en:'Interim Analysis',artifacts:['期中分析报告','数据安全监查','试验终止决策']},
+        {num:'10.3',cn:'最终分析',en:'Final Analysis',artifacts:['最终统计报告','研究总结报告','研究结论']}
+      ]},
+      {num:'11',cn:'最终报告',en:'Final Report',sections:[
+        {num:'11.1',cn:'临床研究报告',en:'CSR',artifacts:['CSR草案','CSR定稿','CSR签字']},
+        {num:'11.2',cn:'发表文章',en:'Publications',artifacts:['文章投稿','文章发表','会议摘要']},
+        {num:'11.3',cn:'项目总结',en:'Project Summary',artifacts:['项目总结报告','经验教训','档案移交']}
+      ]}
+    ];
+    
+    let imported = 0;
+    for (const z of zones) {
+      for (const s of z.sections) {
+        for (const a of s.artifacts) {
+          try {
+            await query(`
+              INSERT INTO folders (project_id, zone, zone_cn, zone_en, section, section_cn, section_en, artifact, artifact_cn, artifact_en, level, path)
+              VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
+            `, [null, z.num, z.cn, z.en, s.num, s.cn, s.en, a, a, a, 3, `${z.num}/${s.num}/${a}`]);
+            imported++;
+          } catch (e) {
+            imported++;
+          }
+        }
+      }
+    }
+    
+    const result = await query('SELECT COUNT(*) as count FROM folders WHERE project_id IS NULL');
+    res.json({ success: true, message: `导入完成`, imported, total: result.rows[0].count });
+  } catch (error) {
+    console.error('Import error:', error);
+    res.status(500).json({ success: false, error: error.message });
   }
 });
 
