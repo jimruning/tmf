@@ -224,11 +224,29 @@ const seedDatabase = async () => {
     
     // Import TMF folders from fodes.txt
     const fs = require('fs');
-    const fodesPath = path.join(__dirname, '..', 'fodes.txt');
-    if (fs.existsSync(fodesPath)) {
+    // Try multiple possible paths for Vercel
+    const possiblePaths = [
+      path.join(__dirname, '..', 'fodes.txt'),
+      path.join(process.cwd(), 'fodes.txt'),
+      path.join(process.cwd(), '..', 'fodes.txt'),
+      '/var/task/fodes.txt',
+      '/var/task/../fodes.txt'
+    ];
+    
+    let fodesPath = null;
+    for (const p of possiblePaths) {
+      if (fs.existsSync(p)) {
+        fodesPath = p;
+        break;
+      }
+    }
+    
+    if (fodesPath) {
+      console.log('Loading fodes from:', fodesPath);
       const content = fs.readFileSync(fodesPath, 'utf-8');
       const lines = content.split('\n').filter(l => l.trim() && !l.startsWith('#'));
       
+      let imported = 0;
       for (const line of lines) {
         const parts = line.split('|').map(s => s?.trim() || '');
         if (parts.length >= 3) {
@@ -236,14 +254,21 @@ const seedDatabase = async () => {
           const level = artifact ? 3 : 1;
           const pathStr = `${zone}/${section}${artifact ? '/' + artifact : ''}`;
           
-          await query(`
-            INSERT INTO folders (project_id, zone, zone_cn, zone_en, section, section_cn, section_en, artifact, artifact_cn, artifact_en, level, path)
-            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
-            ON CONFLICT DO NOTHING
-          `, [null, zone, zoneCn || '', zoneEn || '', section, sectionCn || '', sectionEn || '', artifact || '', artifactCn || '', artifactEn || '', level, pathStr]);
+          try {
+            await query(`
+              INSERT INTO folders (project_id, zone, zone_cn, zone_en, section, section_cn, section_en, artifact, artifact_cn, artifact_en, level, path)
+              VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
+              ON CONFLICT DO NOTHING
+            `, [null, zone, zoneCn || '', zoneEn || '', section, sectionCn || '', sectionEn || '', artifact || '', artifactCn || '', artifactEn || '', level, pathStr]);
+            imported++;
+          } catch (e) {
+            // Skip duplicates
+          }
         }
       }
-      console.log('TMF folders imported');
+      console.log('TMF folders imported:', imported);
+    } else {
+      console.log('fodes.txt not found in any location');
     }
     
     console.log('Database seeded');
